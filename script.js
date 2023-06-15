@@ -20,12 +20,17 @@ deleteButton.addEventListener("click", () => {
 })
 
 clearButton.addEventListener("click", () => {
-    calcTextBottom.innerText = "";
+    clearText();
 })
 
 function updateText() {
     calcTextTop.innerText = calcTextBottom.innerText;
     calcTextBottom.innerText = "";
+}
+
+function clearText() {
+    calcTextBottom.innerText = "";
+    calcTextTop.innerText = "";
 }
 for (let i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener("click", () => {
@@ -47,21 +52,22 @@ for (let i = 0; i < operationButtons.length; i++) {
 
 function add(a, b) {
     // Turns string value in calctextbottom into numbers
-    calcTextBottom.innerText = (parseFloat(a) + parseFloat(b));
+    calcTextBottom.innerText = (a + b);
+    calcTextBottom.innerText = calcTextBottom.innerText.toString();
     calcTextTop.innerText = "";
 }
 
 function subtract(a, b) {
-    calcTextBottom.innerText = (parseFloat(a) - parseFloat(b));
+    calcTextBottom.innerText = (a - b);    
     calcTextTop.innerText = "";
 }
 function multiply(a, b) {
-    calcTextBottom.innerText = (parseFloat(a) * parseFloat(b));
+    calcTextBottom.innerText = (a * b);
     calcTextTop.innerText = "";
 }
 
 function divide(a, b) {
-    calcTextBottom.innerText = (parseFloat(a) / parseFloat(b));
+    calcTextBottom.innerText = (a / b);
     calcTextTop.innerText = "";
 }
 
@@ -69,15 +75,22 @@ function operate(operand1, operation, operand2) {
     if (operation == "addition") {
         add(operand1, operand2);
     } else if (operation == "subtraction") {
-        subtract(parseFloat(calcTextTop.innerText), parseFloat(calcTextBottom.innerText));
+        subtract(operand1, operand2);
     } else if (operation == "multiplication") {
-        multiply(parseFloat(calcTextTop.innerText), parseFloat(calcTextBottom.innerText));
+        multiply(operand1, operand2);
     } else if (operation == "division") {
-        divide(parseFloat(calcTextTop.innerText), parseFloat(calcTextBottom.innerText));
+        if (operand2 != 0) {
+            divide(operand1, operand2);
+        } else {
+            clearText();
+            calcTextBottom.innerText = "ERROR";
+        }
     } else {
-    
+        updateText();
     }
 }
 equalsButton.addEventListener("click", () => {
-    operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+    if (calcTextBottom.innerText !== NaN) {
+        operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+    }
 })
