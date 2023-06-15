@@ -112,11 +112,22 @@ function operate(operand1, operation, operand2) {
         }
     }
 }
-equalsButton.addEventListener("click", () => {
+
+function pressedEqualsButton() {
     if (calcTextBottom.innerText != "" && calcTextTop.innerText != "") {
         operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
     } else if (calcTextBottom.innerText == "") {
         calcTextBottom.innerText = calcTextTop.innerText;
         calcTextTop.innerText = "";
     }
+}
+
+equalsButton.addEventListener("click", () => {
+    pressedEqualsButton();
+})
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        pressedEqualsButton();
+    }    
 })
