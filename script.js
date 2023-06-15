@@ -1,10 +1,12 @@
-const buttons = Array.from(document.getElementsByClassName("small-button"));
+const numberButtons = Array.from(document.getElementsByClassName("number-button"));
+const operationButtons = Array.from(document.getElementsByClassName("operation-button"));
+
 const calcTextBottom = document.getElementById("calc-top-text-bottom");
 const deleteButton = document.getElementById("delete-button");
 
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", () => {
-        calcTextBottom.innerText += buttons[i].innerText;
+for (let i = 0; i < numberButtons.length; i++) {
+    numberButtons[i].addEventListener("click", () => {
+        calcTextBottom.innerText += numberButtons[i].innerText;
     })
 }
 
