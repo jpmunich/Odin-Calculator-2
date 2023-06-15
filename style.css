@@ -66,3 +66,13 @@ header {
     width: 50%;
 }
 
+#calc-top-text-top {
+    height: 50px;
+    background-color: rgb(61, 139, 211);
+}
+
+#calc-top-text-bottom {
+    height: 50px;
+    background-color: rgb(55, 107, 155);
+}
+
