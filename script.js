@@ -36,29 +36,37 @@ for (let i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener("click", () => {
         if (operationButtons[i].innerText == "+") {
             // If there is input 
-            if (calcTextTop.innerText != "") {
+            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
                 operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
             }
                 selectedOperation = "addition";
+            if (calcTextBottom.innerText != "") {
                 updateText();
+            }
         } else if (operationButtons[i].innerText == "-") {
-            if (calcTextTop.innerText != "") {
+            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
                 operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
             }
                 selectedOperation = "subtraction";
+            if (calcTextBottom.innerText != "") {
                 updateText();
+            }
         } else if (operationButtons[i].innerText == "*") {
-            if (calcTextTop.innerText != "") {
+            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
                 operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
             }
                 selectedOperation = "multiplication";
+            if (calcTextBottom.innerText != "") {
                 updateText();
+            }
         } else if (operationButtons[i].innerText == "/") {
-            if (calcTextTop.innerText != "") {
+            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
                 operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
             }
                 selectedOperation = "division";
+            if (calcTextBottom.innerText != "") {
                 updateText();
+            }
         }
     })
 }
