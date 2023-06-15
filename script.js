@@ -47,6 +47,7 @@ for (let i = 0; i < operationButtons.length; i++) {
 }
 
 function add(a, b) {
+    // Turns string value in calctextbottom into numbers
     calcTextBottom.innerText = (parseFloat(a) + parseFloat(b));
     calcTextTop.innerText = "";
 }
@@ -65,16 +66,19 @@ function divide(a, b) {
     calcTextTop.innerText = "";
 }
 
-equalsButton.addEventListener("click", () => {
-    if (selectedOperation == "addition") {
-        add(parseFloat(calcTextTop.innerText), parseFloat(calcTextBottom.innerText));
-    } else if (selectedOperation == "subtraction") {
+function operate(operand1, operation, operand2) {
+    if (operation == "addition") {
+        add(operand1, operand2);
+    } else if (operation == "subtraction") {
         subtract(parseFloat(calcTextTop.innerText), parseFloat(calcTextBottom.innerText));
-    } else if (selectedOperation == "multiplication") {
+    } else if (operation == "multiplication") {
         multiply(parseFloat(calcTextTop.innerText), parseFloat(calcTextBottom.innerText));
-    } else if (selectedOperation == "division") {
+    } else if (operation == "division") {
         divide(parseFloat(calcTextTop.innerText), parseFloat(calcTextBottom.innerText));
     } else {
     
     }
+}
+equalsButton.addEventListener("click", () => {
+    operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
 })
