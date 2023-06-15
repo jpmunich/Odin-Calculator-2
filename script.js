@@ -35,17 +35,30 @@ function clearText() {
 for (let i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener("click", () => {
         if (operationButtons[i].innerText == "+") {
-            selectedOperation = "addition";
-            updateText();
+            // If there is input 
+            if (calcTextTop.innerText != "") {
+                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+            }
+                selectedOperation = "addition";
+                updateText();
         } else if (operationButtons[i].innerText == "-") {
-            selectedOperation = "subtraction";
-            updateText();
+            if (calcTextTop.innerText != "") {
+                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+            }
+                selectedOperation = "subtraction";
+                updateText();
         } else if (operationButtons[i].innerText == "*") {
-            selectedOperation = "multiplication";
-            updateText();
+            if (calcTextTop.innerText != "") {
+                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+            }
+                selectedOperation = "multiplication";
+                updateText();
         } else if (operationButtons[i].innerText == "/") {
-            selectedOperation = "division";
-            updateText();
+            if (calcTextTop.innerText != "") {
+                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+            }
+                selectedOperation = "division";
+                updateText();
         }
     })
 }
@@ -72,25 +85,30 @@ function divide(a, b) {
 }
 
 function operate(operand1, operation, operand2) {
-    if (operation == "addition") {
-        add(operand1, operand2);
-    } else if (operation == "subtraction") {
-        subtract(operand1, operand2);
-    } else if (operation == "multiplication") {
-        multiply(operand1, operand2);
-    } else if (operation == "division") {
-        if (operand2 != 0) {
-            divide(operand1, operand2);
+    if (calcTextBottom.innerText !== NaN) {
+        if (operation == "addition") {
+            add(operand1, operand2);
+        } else if (operation == "subtraction") {
+            subtract(operand1, operand2);
+        } else if (operation == "multiplication") {
+            multiply(operand1, operand2);
+        } else if (operation == "division") {
+            if (operand2 != 0) {
+                divide(operand1, operand2);
+            } else {
+                clearText();
+                calcTextBottom.innerText = "ERROR";
+            }
         } else {
-            clearText();
-            calcTextBottom.innerText = "ERROR";
+            updateText();
         }
-    } else {
-        updateText();
     }
 }
 equalsButton.addEventListener("click", () => {
-    if (calcTextBottom.innerText !== NaN) {
+    if (calcTextBottom.innerText != "" && calcTextTop.innerText != "") {
         operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+    } else if (calcTextBottom.innerText == "") {
+        calcTextBottom.innerText = calcTextTop.innerText;
+        calcTextTop.innerText = "";
     }
 })
