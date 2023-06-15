@@ -20,28 +20,27 @@ deleteButton.addEventListener("click", () => {
 })
 
 clearButton.addEventListener("click", () => {
-    console.log(selectedOperation);
     calcTextBottom.innerText = "";
 })
 
+function updateText() {
+    calcTextTop.innerText = calcTextBottom.innerText;
+    calcTextBottom.innerText = "";
+}
 for (let i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener("click", () => {
         if (operationButtons[i].innerText == "+") {
             selectedOperation = "addition";
-            calcTextTop.innerText = calcTextBottom.innerText;
-            calcTextBottom.innerText = "";
+            updateText();
         } else if (operationButtons[i].innerText == "-") {
             selectedOperation = "subtraction";
-            calcTextTop.innerText = calcTextBottom.innerText;
-            calcTextBottom.innerText = "";
+            updateText();
         } else if (operationButtons[i].innerText == "*") {
             selectedOperation = "multiplication";
-            calcTextTop.innerText = calcTextBottom.innerText;
-            calcTextBottom.innerText = "";
+            updateText();
         } else if (operationButtons[i].innerText == "/") {
             selectedOperation = "division";
-            calcTextTop.innerText = calcTextBottom.innerText;
-            calcTextBottom.innerText = "";
+            updateText();
         }
     })
 }
