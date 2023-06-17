@@ -135,7 +135,70 @@ equalsButton.addEventListener("click", () => {
 })
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.key === "=") {
         pressedEqualsButton();
     }    
+    if (e.key === "1") {
+        calcTextBottom.innerText += "1";
+    }
+    if (e.key === "2") {
+        calcTextBottom.innerText += "2";
+    }
+    if (e.key === "3") {
+        calcTextBottom.innerText += "3";
+    }
+    if (e.key === "4") {
+        calcTextBottom.innerText += "4";
+    }
+    if (e.key === "5") {
+        calcTextBottom.innerText += "5";
+    }
+    if (e.key === "6") {
+        calcTextBottom.innerText += "6";
+    }
+    if (e.key === "7") {
+        calcTextBottom.innerText += "7";
+    }
+    if (e.key === "8") {
+        calcTextBottom.innerText += "8";
+    }
+    if (e.key === "9") {
+        calcTextBottom.innerText += "9";
+    }
+    if (e.key === "+") {
+        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
+            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+        }
+            selectedOperation = "addition";
+        if (calcTextBottom.innerText != "") {
+            updateText();
+        }
+    }
+    if (e.key === "-") {
+        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
+            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+        }
+            selectedOperation = "subtraction";
+        if (calcTextBottom.innerText != "") {
+            updateText();
+        }
+    }
+    if (e.key === "*") {
+        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
+            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+        }
+            selectedOperation = "multiplication";
+        if (calcTextBottom.innerText != "") {
+            updateText();
+        }
+    }
+    if (e.key === "/") {
+        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
+            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+        }
+            selectedOperation = "division";
+        if (calcTextBottom.innerText != "") {
+            updateText();
+        }
+    }
 })
