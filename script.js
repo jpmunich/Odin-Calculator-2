@@ -16,12 +16,15 @@ for (let i = 0; i < numberButtons.length; i++) {
     })
 }
 
-decimalButton.addEventListener("click", () => {
+function limitNumberToOneDecimalPoint() {
     if (calcTextBottom.innerText.indexOf(".") === -1) {
         calcTextBottom.innerText += decimalButton.innerText;
     }
-})
+}
 
+decimalButton.addEventListener("click", () => {
+    limitNumberToOneDecimalPoint();
+})
 
 deleteButton.addEventListener("click", () => {
     calcTextBottom.innerText = calcTextBottom.innerText.substring(0, calcTextBottom.innerText.length - 1);
@@ -59,13 +62,13 @@ function checkIfOperatingWorks(operation) {
 for (let i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener("click", () => {
         if (operationButtons[i].innerText == "+") {
-            checkIfOperatingWorks("addition");
+            checkIfOperatingWorks("+");
         } else if (operationButtons[i].innerText == "-") {
-            checkIfOperatingWorks("subtraction");
+            checkIfOperatingWorks("-");
         } else if (operationButtons[i].innerText == "*") {
-            checkIfOperatingWorks("multiplication");
+            checkIfOperatingWorks("*");
         } else if (operationButtons[i].innerText == "/") {
-            checkIfOperatingWorks("division");
+            checkIfOperatingWorks("/");
         }
     })
 }
@@ -91,13 +94,13 @@ function divide(a, b) {
 
 function operate(operand1, operation, operand2) {
     if (calcTextBottom.innerText !== NaN && calcTextBottom.innerText != "ERROR") {
-        if (operation === "addition") { add(operand1, operand2); } 
-        if (operation === "subtraction") { subtract(operand1, operand2); } 
-        if (operation === "multiplication") { multiply(operand1, operand2); } 
+        if (operation === "+") { add(operand1, operand2); } 
+        if (operation === "-") { subtract(operand1, operand2); } 
+        if (operation === "*") { multiply(operand1, operand2); } 
         
-        if (operation === "division" && operand2 != 0) {
+        if (operation === "/" && operand2 != 0) {
             divide(operand1, operand2);
-        } else if (operation == "division" && operand2 == 0) {
+        } else if (operation == "/" && operand2 == 0) {
             clearText();
             calcTextBottom.innerText = "ERROR! Calculator Will Clear";
             setTimeout(() => {
@@ -105,7 +108,6 @@ function operate(operand1, operation, operand2) {
             }, 2000)
         }
     }
-
 }
 
 function pressedEqualsButton() {
@@ -121,58 +123,31 @@ equalsButton.addEventListener("click", () => {
     pressedEqualsButton();
 })
 
+
+const allowedNumberKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+const allowedOperationKeys = ["+", "-", "*", "/"];
+
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === "=") {
         pressedEqualsButton();
     }    
-    if (e.key === "1") {
-        calcTextBottom.innerText += "1";
-    }
-    if (e.key === "2") {
-        calcTextBottom.innerText += "2";
-    }
-    if (e.key === "3") {
-        calcTextBottom.innerText += "3";
-    }
-    if (e.key === "4") {
-        calcTextBottom.innerText += "4";
-    }
-    if (e.key === "5") {
-        calcTextBottom.innerText += "5";
-    }
-    if (e.key === "6") {
-        calcTextBottom.innerText += "6";
-    }
-    if (e.key === "7") {
-        calcTextBottom.innerText += "7";
-    }
-    if (e.key === "8") {
-        calcTextBottom.innerText += "8";
-    }
-    if (e.key === "9") {
-        calcTextBottom.innerText += "9";
-    }
-    if (e.key === "0") {
-        calcTextBottom.innerText += "0";
-    }
-    if (e.key === ".") {
-        if (calcTextBottom.innerText.indexOf(".") === -1) {
-            calcTextBottom.innerText += decimalButton.innerText;
+
+    for (let i = 0; i < allowedNumberKeys.length; i++) {
+        if (e.key === allowedNumberKeys[i]) {
+            calcTextBottom.innerText += allowedNumberKeys[i];
         }
+    }
+    for (let i = 0; i < allowedOperationKeys.length; i++) {
+        if (e.key === allowedOperationKeys[i]) {
+            checkIfOperatingWorks(allowedOperationKeys[i]);
+        }
+    }
+    
+    if (e.key === ".") {
+        limitNumberToOneDecimalPoint();
     }
     if (e.key === "Backspace") {
         calcTextBottom.innerText = calcTextBottom.innerText.substring(0, calcTextBottom.innerText.length - 1);
     }
-    if (e.key === "+") {
-        checkIfOperatingWorks("addition");
-    }
-    if (e.key === "-") {
-        checkIfOperatingWorks("subtraction");
-    }
-    if (e.key === "*") {
-        checkIfOperatingWorks("multiplication");
-    }
-    if (e.key === "/") {
-        checkIfOperatingWorks("division");
-    }
+
 })
