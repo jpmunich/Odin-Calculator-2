@@ -82,21 +82,21 @@ for (let i = 0; i < operationButtons.length; i++) {
 
 function add(a, b) {
     // Turns string value in calctextbottom into numbers
-    calcTextBottom.innerText = (a + b).toFixed(12);
+    calcTextBottom.innerText = (a + b);
     calcTextTop.innerText = "";
 }
 
 function subtract(a, b) {
-    calcTextBottom.innerText = (a - b).toFixed(12);    
+    calcTextBottom.innerText = (a - b);    
     calcTextTop.innerText = "";
 }
 function multiply(a, b) {
-    calcTextBottom.innerText = (a * b).toFixed(12);
+    calcTextBottom.innerText = (a * b);
     calcTextTop.innerText = "";
 }
 
 function divide(a, b) {
-    calcTextBottom.innerText = (a / b).toFixed(12);
+    calcTextBottom.innerText = (a / b);
     calcTextTop.innerText = "";
 }
 

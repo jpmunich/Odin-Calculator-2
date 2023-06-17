@@ -24,9 +24,8 @@ header {
     border-radius: 10px;
     margin-top: 50px;
     left: 50%;
-    height: 600px;
-    min-width: 40%;
-    max-width: 70%;
+    height: 625px;
+    width: 50%;
     background-color: rgb(150, 216, 216);
 }
 
@@ -34,10 +33,11 @@ header {
     position: relative;
     transform: translateX(-50%);
     border: 3px solid black;
+    padding: 10px;
     border-radius: 5px;
     margin-top: 40px;
     left: 50%;
-    height: 100px;
+    min-height: 100px;
     width: 80%;
     background-color: rgb(59, 128, 192);
 }
@@ -94,10 +94,13 @@ header {
 }
 
 #calc-top-text-top {
-    display: flex;
-    align-items: center;
-    justify-content: end;
+    position: relative;
+    padding-top: 17.5px;
+    text-align: right;
+    margin-right: 20px;
+    word-wrap: break-word;
     margin-right: 10px;
+    margin-left: 10px;
     min-height: 50px;
     background-color: transparent;
     font-size: 18px;
@@ -105,10 +108,12 @@ header {
 }
 
 #calc-top-text-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: end;
+    position: relative;
+    padding-top: 17.5px;
+    text-align: right;
     margin-right: 20px;
+    margin-left: 10px;
+    word-wrap: break-word;
     min-height: 50px;
     background-color: transparent;
     font-size: 22px;
