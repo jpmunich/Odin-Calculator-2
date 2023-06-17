@@ -32,20 +32,25 @@ clearButton.addEventListener("click", () => {
 })
 
 function updateText() {
+    // Replaces previous answer/operand with the current one and removes the previous operand
     calcTextTop.innerText = calcTextBottom.innerText;
     calcTextBottom.innerText = "";
 }
 
 function clearText() {
+    // Removes all input
     calcTextBottom.innerText = "";
     calcTextTop.innerText = "";
 }
 
 function checkIfOperatingWorks(operation) {
+    // Checks whether there are two operands or not
     if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
         operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
     }
         selectedOperation = operation;
+
+    // Allows operation to be switched indefinitely without updating text
     if (calcTextBottom.innerText != "") {
         updateText();
     }
@@ -66,7 +71,6 @@ for (let i = 0; i < operationButtons.length; i++) {
 }
 
 function add(a, b) {
-    // Turns string value in calctextbottom into numbers
     calcTextBottom.innerText = (a + b);
     calcTextTop.innerText = "";
 }
@@ -86,24 +90,22 @@ function divide(a, b) {
 }
 
 function operate(operand1, operation, operand2) {
-    if (calcTextBottom.innerText !== NaN) {
-        if (operation == "addition") {
-            add(operand1, operand2);
-        } else if (operation == "subtraction") {
-            subtract(operand1, operand2);
-        } else if (operation == "multiplication") {
-            multiply(operand1, operand2);
-        } else if (operation == "division") {
-            if (operand2 != 0) {
-                divide(operand1, operand2);
-            } else {
-                clearText();
-                calcTextBottom.innerText = "ERROR";
-            }
-        } else {
-            updateText();
+    if (calcTextBottom.innerText !== NaN && calcTextBottom.innerText != "ERROR") {
+        if (operation === "addition") { add(operand1, operand2); } 
+        if (operation === "subtraction") { subtract(operand1, operand2); } 
+        if (operation === "multiplication") { multiply(operand1, operand2); } 
+        
+        if (operation === "division" && operand2 != 0) {
+            divide(operand1, operand2);
+        } else if (operation == "division" && operand2 == 0) {
+            clearText();
+            calcTextBottom.innerText = "ERROR! Calculator Will Clear";
+            setTimeout(() => {
+                clearText()
+            }, 2000)
         }
     }
+
 }
 
 function pressedEqualsButton() {
@@ -149,6 +151,17 @@ document.addEventListener("keydown", (e) => {
     }
     if (e.key === "9") {
         calcTextBottom.innerText += "9";
+    }
+    if (e.key === "0") {
+        calcTextBottom.innerText += "0";
+    }
+    if (e.key === ".") {
+        if (calcTextBottom.innerText.indexOf(".") === -1) {
+            calcTextBottom.innerText += decimalButton.innerText;
+        }
+    }
+    if (e.key === "Backspace") {
+        calcTextBottom.innerText = calcTextBottom.innerText.substring(0, calcTextBottom.innerText.length - 1);
     }
     if (e.key === "+") {
         checkIfOperatingWorks("addition");
