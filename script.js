@@ -1,3 +1,5 @@
+let selectedOperation = "none";
+
 const numberButtons = Array.from(document.getElementsByClassName("number-button"));
 const operationButtons = Array.from(document.getElementsByClassName("operation-button"));
 const decimalButton = document.getElementById("decimal-button");
@@ -8,43 +10,11 @@ const deleteButton = document.getElementById("delete-button");
 const clearButton = document.getElementById("clear-button");
 const equalsButton = document.getElementById("equals-button");
 
-let selectedOperation = "none";
-
-for (let i = 0; i < numberButtons.length; i++) {
-    numberButtons[i].addEventListener("click", () => {
-            calcTextBottom.innerText += numberButtons[i].innerText;
+numberButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        calcTextBottom.innerText += button.innerText;
     })
-}
-
-function limitNumberToOneDecimalPoint() {
-    if (calcTextBottom.innerText.indexOf(".") === -1) {
-        calcTextBottom.innerText += decimalButton.innerText;
-    }
-}
-
-decimalButton.addEventListener("click", () => {
-    limitNumberToOneDecimalPoint();
-})
-
-deleteButton.addEventListener("click", () => {
-    calcTextBottom.innerText = calcTextBottom.innerText.substring(0, calcTextBottom.innerText.length - 1);
-})
-
-clearButton.addEventListener("click", () => {
-    clearText();
-})
-
-function updateText() {
-    // Replaces previous answer/operand with the current one and removes the previous operand
-    calcTextTop.innerText = calcTextBottom.innerText;
-    calcTextBottom.innerText = "";
-}
-
-function clearText() {
-    // Removes all input
-    calcTextBottom.innerText = "";
-    calcTextTop.innerText = "";
-}
+});
 
 function checkIfOperatingWorks(operation) {
     // Checks whether there are two operands or not
@@ -59,18 +29,36 @@ function checkIfOperatingWorks(operation) {
     }
 }
 
-for (let i = 0; i < operationButtons.length; i++) {
-    operationButtons[i].addEventListener("click", () => {
-        if (operationButtons[i].innerText == "+") {
+operationButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (button.innerText == "+") {
             checkIfOperatingWorks("+");
-        } else if (operationButtons[i].innerText == "-") {
+        } else if (button.innerText == "-") {
             checkIfOperatingWorks("-");
-        } else if (operationButtons[i].innerText == "*") {
+        } else if (button.innerText == "*") {
             checkIfOperatingWorks("*");
-        } else if (operationButtons[i].innerText == "/") {
+        } else if (button.innerText == "/") {
             checkIfOperatingWorks("/");
         }
     })
+})
+
+function limitNumberToOneDecimalPoint() {
+    if (calcTextBottom.innerText.indexOf(".") === -1) {
+        calcTextBottom.innerText += decimalButton.innerText;
+    }
+}
+
+function updateText() {
+    // Replaces previous answer/operand with the current one and removes the previous operand
+    calcTextTop.innerText = calcTextBottom.innerText;
+    calcTextBottom.innerText = "";
+}
+
+function clearText() {
+    // Removes all input
+    calcTextBottom.innerText = "";
+    calcTextTop.innerText = "";
 }
 
 function add(a, b) {
@@ -119,11 +107,23 @@ function pressedEqualsButton() {
     }
 }
 
+decimalButton.addEventListener("click", () => {
+    limitNumberToOneDecimalPoint();
+})
+
+deleteButton.addEventListener("click", () => {
+    calcTextBottom.innerText = calcTextBottom.innerText.substring(0, calcTextBottom.innerText.length - 1);
+})
+
+clearButton.addEventListener("click", () => {
+    clearText();
+})
+
 equalsButton.addEventListener("click", () => {
     pressedEqualsButton();
 })
 
-
+// Keyboard Support
 const allowedNumberKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const allowedOperationKeys = ["+", "-", "*", "/"];
 
@@ -132,17 +132,18 @@ document.addEventListener("keydown", (e) => {
         pressedEqualsButton();
     }    
 
-    for (let i = 0; i < allowedNumberKeys.length; i++) {
-        if (e.key === allowedNumberKeys[i]) {
-            calcTextBottom.innerText += allowedNumberKeys[i];
+    allowedNumberKeys.forEach((numKey) => {
+        if (e.key === numKey) {
+            calcTextBottom.innerText += numKey;
         }
-    }
-    for (let i = 0; i < allowedOperationKeys.length; i++) {
-        if (e.key === allowedOperationKeys[i]) {
-            checkIfOperatingWorks(allowedOperationKeys[i]);
+    }) 
+
+    allowedOperationKeys.forEach((opKey) => {
+        if (e.key === opKey) {
+            checkIfOperatingWorks(opKey);
         }
-    }
-    
+    })
+
     if (e.key === ".") {
         limitNumberToOneDecimalPoint();
     }
