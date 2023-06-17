@@ -41,41 +41,26 @@ function clearText() {
     calcTextTop.innerText = "";
 }
 
+function checkIfOperatingWorks(operation) {
+    if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
+        operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
+    }
+        selectedOperation = operation;
+    if (calcTextBottom.innerText != "") {
+        updateText();
+    }
+}
+
 for (let i = 0; i < operationButtons.length; i++) {
     operationButtons[i].addEventListener("click", () => {
         if (operationButtons[i].innerText == "+") {
-            // If there is input 
-            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-            }
-                selectedOperation = "addition";
-            if (calcTextBottom.innerText != "") {
-                updateText();
-            }
+            checkIfOperatingWorks("addition");
         } else if (operationButtons[i].innerText == "-") {
-            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-            }
-                selectedOperation = "subtraction";
-            if (calcTextBottom.innerText != "") {
-                updateText();
-            }
+            checkIfOperatingWorks("subtraction");
         } else if (operationButtons[i].innerText == "*") {
-            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-            }
-                selectedOperation = "multiplication";
-            if (calcTextBottom.innerText != "") {
-                updateText();
-            }
+            checkIfOperatingWorks("multiplication");
         } else if (operationButtons[i].innerText == "/") {
-            if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-                operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-            }
-                selectedOperation = "division";
-            if (calcTextBottom.innerText != "") {
-                updateText();
-            }
+            checkIfOperatingWorks("division");
         }
     })
 }
@@ -166,39 +151,15 @@ document.addEventListener("keydown", (e) => {
         calcTextBottom.innerText += "9";
     }
     if (e.key === "+") {
-        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-        }
-            selectedOperation = "addition";
-        if (calcTextBottom.innerText != "") {
-            updateText();
-        }
+        checkIfOperatingWorks("addition");
     }
     if (e.key === "-") {
-        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-        }
-            selectedOperation = "subtraction";
-        if (calcTextBottom.innerText != "") {
-            updateText();
-        }
+        checkIfOperatingWorks("subtraction");
     }
     if (e.key === "*") {
-        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-        }
-            selectedOperation = "multiplication";
-        if (calcTextBottom.innerText != "") {
-            updateText();
-        }
+        checkIfOperatingWorks("multiplication");
     }
     if (e.key === "/") {
-        if (calcTextTop.innerText != "" && calcTextBottom.innerText != "") {
-            operate(parseFloat(calcTextTop.innerText), selectedOperation, parseFloat(calcTextBottom.innerText));
-        }
-            selectedOperation = "division";
-        if (calcTextBottom.innerText != "") {
-            updateText();
-        }
+        checkIfOperatingWorks("division");
     }
 })
