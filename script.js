@@ -11,9 +11,8 @@ const equalsButton = document.getElementById("equals-button");
 let selectedOperation = "none";
 
 for (let i = 0; i < numberButtons.length; i++) {
-
     numberButtons[i].addEventListener("click", () => {
-        calcTextBottom.innerText += numberButtons[i].innerText;
+            calcTextBottom.innerText += numberButtons[i].innerText;
     })
 }
 
@@ -83,22 +82,21 @@ for (let i = 0; i < operationButtons.length; i++) {
 
 function add(a, b) {
     // Turns string value in calctextbottom into numbers
-    calcTextBottom.innerText = (a + b);
-    calcTextBottom.innerText = calcTextBottom.innerText.toString();
+    calcTextBottom.innerText = (a + b).toFixed(12);
     calcTextTop.innerText = "";
 }
 
 function subtract(a, b) {
-    calcTextBottom.innerText = (a - b);    
+    calcTextBottom.innerText = (a - b).toFixed(12);    
     calcTextTop.innerText = "";
 }
 function multiply(a, b) {
-    calcTextBottom.innerText = (a * b);
+    calcTextBottom.innerText = (a * b).toFixed(12);
     calcTextTop.innerText = "";
 }
 
 function divide(a, b) {
-    calcTextBottom.innerText = (a / b);
+    calcTextBottom.innerText = (a / b).toFixed(12);
     calcTextTop.innerText = "";
 }
 
