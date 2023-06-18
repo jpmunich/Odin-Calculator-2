@@ -69,8 +69,16 @@ header {
     width: 23%;
 }
 
+.number-button:hover {
+    background-color: rgb(59, 153, 156);
+}
+
 .operation-button {
     background-color: rgb(209, 167, 105);
+}
+
+.operation-button:hover {
+    background-color: rgb(182, 143, 86);
 }
 
 #clear-button {
@@ -80,11 +88,19 @@ header {
     margin: 2px;
 }
 
+#clear-button:hover {
+    background-color: rgb(42, 99, 153);
+}
+
 #delete-button {
     background-color: rgb(221, 75, 75);
     border: 4px solid black;
     border-radius: 5px;
     margin: 2px;
+}
+
+#delete-button:hover {
+    background-color: rgb(172, 51, 51);
 }
 
 .large-button {
