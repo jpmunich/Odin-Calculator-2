@@ -138,3 +138,51 @@ header {
     font-weight: 700;
 }
 
+@media (max-width: 700px) {
+    #everything {
+        height: 525px;
+        min-width: 300px;
+    }
+
+    #calc-body {
+        height: 300px;
+    }
+}
+
+@media (max-width: 300px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    #everything {
+        margin-top: 150px;
+        height: 325px;
+        min-width: 150px;
+    }
+
+    #calc-top {
+        min-height: 50px;
+        height: 90px;
+    }
+
+    #calc-body {
+        height: 150px;
+    }
+
+    .small-button {
+        width: 20%;
+        font-size: 0.2em;
+    }
+
+    .large-button {
+        width: 46%;
+    }
+
+    #clear-button {
+        font-size: 0.2em;
+    }
+
+    #delete-button {
+        font-size: 0.2em;
+    }
+}
