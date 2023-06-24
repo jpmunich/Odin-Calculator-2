@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+*[x-apple-data-detectors] {
+    border-bottom: 0 !important;
+    cursor: default !important;
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
 body {
     background-color: rgb(41, 110, 110);
 }
