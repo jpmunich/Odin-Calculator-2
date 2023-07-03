@@ -28,7 +28,6 @@ header {
     position: absolute;
     transform: translateX(-50%);
     padding-bottom: 2em;
-    margin-bottom: 2em;
     border: 4px solid black;
     border-radius: 10px;
     margin-top: 50px;
@@ -149,7 +148,7 @@ header {
 
 @media (max-width: 700px) {
     #everything {
-        height: 525px;
+        min-height: 525px;
         min-width: 300px;
     }
 
@@ -165,7 +164,7 @@ header {
 
     #everything {
         margin-top: 150px;
-        height: 325px;
+        min-height: 325px;
         min-width: 150px;
     }
 
